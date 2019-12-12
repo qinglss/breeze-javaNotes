@@ -4,22 +4,20 @@ import sun.applet.Main;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 public class Test {
 
-    public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException, InstantiationException {
+    public static void main(String[] args) throws Exception {
         Class clazz = Dog.class;
-        Dog o = (Dog)clazz.newInstance();
-//        Field[] fields = clazz.getFields(); //获取勒种的所有的公有字段 包含继承关系的公有字段
-//        Field[] declaredFields = clazz.getDeclaredFields(); //获取类中自定义的字段 内部
-//        Field naneField = clazz.getField("id"); //获取指定名称的公有字段
-        Field nameId = clazz.getDeclaredField("id"); //获取指定名称类中定义的字段 包涵私有
-//        int modifiers = nameId.getModifiers(); //获取字段的修饰符
-        nameId.setAccessible(true); //指定私有字段强制访问
-
-        nameId.set(o, 2); //成员字段赋值(需指定对象)
-
-        System.out.println(o.getId());
+        Dog dog = (Dog)clazz.newInstance();
+        Method[] methods = clazz.getMethods();//获取类中所有的公有方法 包涵继承
+        Method[] declaredMethods = clazz.getDeclaredMethods(); //获取类中定义的方法
+        Method method = clazz.getMethod("", String.class);//获取类中指定名称和参数的公有方法
+//        Method declaredMethod = clazz.getDeclaredMethod(, );//获取类中定义指定名称和参数的方法
+        int modifiers = method.getModifiers(); //获取方法的修饰符
+        method.invoke(dog, ""); //指定对象进行成员方法的调用
+        declaredMethod.setAccessible(true);
 
     }
 }
