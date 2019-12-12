@@ -3,7 +3,6 @@
 服务雪崩, 服务提供者不可用-->导致服务消费者的不可用-->导致不可用逐渐放大的一个过程-->最终导致服务瘫痪  
 如图,服务间调用关系A-->B-->CD  
 ![](http://img.zhaoqingfeng.com/%E6%9C%8D%E5%8A%A1%E9%9B%AA%E5%B4%A9.png)
-![avatar](../img/服务雪崩.png)
 ## Hystrix的三个机制
 断路器机制    
 &emsp;&emsp;当Hystrix Command 请求后端服务失败超过一个阈值比例(默认50%), 断路器就会切换到开路状态,  
